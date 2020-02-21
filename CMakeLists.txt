@@ -1,12 +1,10 @@
 project(attica)
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 3.0.0)
 
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
-
-option(QT4_BUILD "Force building with Qt4 even if Qt5 is found")
-if (NOT QT4_BUILD)
-  find_package(Qt5Core QUIET)
-endif()
+# since cmake 2.8.6
+set(CMAKE_AUTOMOC ON)
+# since cmake 3.0.0
+set(CMAKE_AUTOUIC ON)
 
 # Used to create CMake config files
 include(CMakePackageConfigHelpers)
@@ -18,29 +16,14 @@ include(GNUInstallDirs)
 set(LIB_DESTINATION         "${CMAKE_INSTALL_FULL_LIBDIR}" CACHE PATH "Library directory name")
 set(INCLUDE_DESTINATION     "${CMAKE_INSTALL_FULL_INCLUDEDIR}" CACHE PATH "The subdirectory to the header prefix")
 
-if (Qt5Core_FOUND)
-  message(STATUS "Building with Qt5 support")
-  find_package(Qt5Transitional REQUIRED Core Network)
-else()
-  set(QT_MIN_VERSION "4.7.0")
-  find_package(Qt4 REQUIRED)
-endif()
+find_package(Katie REQUIRED)
 
-if (Qt5Core_FOUND)
-  set(CMAKE_LIBATTICA_VERSION_MAJOR 1)
-  set(CMAKE_LIBATTICA_VERSION_MINOR 0)
-  set(CMAKE_LIBATTICA_VERSION_PATCH 0)
-  set(ATTICA_LIB_SONAME KF5Attica)
-  set(ATTICA_LIB_SONAME_CAMEL KF5Attica)
-  set(ATTICA_LIB_NAMESPACE KF5)
-else()
-  set(CMAKE_LIBATTICA_VERSION_MAJOR 0)
-  set(CMAKE_LIBATTICA_VERSION_MINOR 4)
-  set(CMAKE_LIBATTICA_VERSION_PATCH 2)
-  set(ATTICA_LIB_SONAME attica)
-  set(ATTICA_LIB_SONAME_CAMEL LibAttica)
-  set(ATTICA_LIB_NAMESPACE LibAttica)
-endif()
+set(CMAKE_LIBATTICA_VERSION_MAJOR 0)
+set(CMAKE_LIBATTICA_VERSION_MINOR 4)
+set(CMAKE_LIBATTICA_VERSION_PATCH 2)
+set(ATTICA_LIB_SONAME attica)
+set(ATTICA_LIB_SONAME_CAMEL LibAttica)
+set(ATTICA_LIB_NAMESPACE LibAttica)
 set(CMAKE_LIBATTICA_VERSION_STRING  "${CMAKE_LIBATTICA_VERSION_MAJOR}.${CMAKE_LIBATTICA_VERSION_MINOR}.${CMAKE_LIBATTICA_VERSION_PATCH}")
 
 if(NOT MSVC)
@@ -51,8 +34,6 @@ endif(NOT MSVC)
 
 add_definitions( -DQT_NO_CAST_FROM_ASCII )
 add_definitions( -DQT_NO_CAST_TO_ASCII )
-add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
@@ -66,42 +47,36 @@ add_subdirectory(src)
 # Enable unit testing
 if (ATTICA_ENABLE_TESTS)
     enable_testing()
-    if(Qt5Core_FOUND)
-        find_package(Qt5Transitional REQUIRED
-            Test
-        )
-    endif()
     add_subdirectory(autotests)
     add_subdirectory(tests)
 endif (ATTICA_ENABLE_TESTS)
 
 
 # Write LibAtticaConfigVersion.cmake
-write_basic_package_version_file(${attica_BINARY_DIR}/${ATTICA_LIB_SONAME_CAMEL}ConfigVersion.cmake
-                                 VERSION ${CMAKE_LIBATTICA_VERSION_STRING}
-                                 COMPATIBILITY SameMajorVersion
-                                )
+write_basic_package_version_file(
+    ${attica_BINARY_DIR}/${ATTICA_LIB_SONAME_CAMEL}ConfigVersion.cmake
+    VERSION ${CMAKE_LIBATTICA_VERSION_STRING}
+    COMPATIBILITY SameMajorVersion
+)
 
 # Create the CMake Config files
-if (Qt5Core_FOUND)
-  configure_package_config_file(KF5AtticaConfig.cmake.in
-                              ${attica_BINARY_DIR}/KF5AtticaConfig.cmake
-                              INSTALL_DESTINATION ${LIB_DESTINATION}/cmake/${ATTICA_LIB_SONAME_CAMEL}
-                              PATH_VARS LIB_DESTINATION INCLUDE_DESTINATION
-  )
-else()
-  configure_package_config_file(LibAtticaConfig.cmake.in
-                              ${attica_BINARY_DIR}/LibAtticaConfig.cmake
-                              INSTALL_DESTINATION ${LIB_DESTINATION}/cmake/${ATTICA_LIB_SONAME_CAMEL}
-                              PATH_VARS LIB_DESTINATION INCLUDE_DESTINATION
-  )
-endif()
+configure_package_config_file(
+    LibAtticaConfig.cmake.in
+    ${attica_BINARY_DIR}/LibAtticaConfig.cmake
+    INSTALL_DESTINATION ${LIB_DESTINATION}/cmake/${ATTICA_LIB_SONAME_CAMEL}
+    PATH_VARS LIB_DESTINATION INCLUDE_DESTINATION
+)
 
-install(FILES ${attica_BINARY_DIR}/${ATTICA_LIB_SONAME_CAMEL}Config.cmake
-              ${attica_BINARY_DIR}/${ATTICA_LIB_SONAME_CAMEL}ConfigVersion.cmake
-        DESTINATION ${LIB_DESTINATION}/cmake/${ATTICA_LIB_SONAME_CAMEL}
-       )
+install(
+    FILES
+    ${attica_BINARY_DIR}/${ATTICA_LIB_SONAME_CAMEL}Config.cmake
+    ${attica_BINARY_DIR}/${ATTICA_LIB_SONAME_CAMEL}ConfigVersion.cmake
+    DESTINATION ${LIB_DESTINATION}/cmake/${ATTICA_LIB_SONAME_CAMEL}
+)
 
-install(EXPORT LibAtticaExport FILE ${ATTICA_LIB_SONAME_CAMEL}Targets.cmake
-        DESTINATION ${LIB_DESTINATION}/cmake/${ATTICA_LIB_SONAME_CAMEL}
-        NAMESPACE ${ATTICA_LIB_NAMESPACE}::)
+install(
+    EXPORT LibAtticaExport
+    FILE ${ATTICA_LIB_SONAME_CAMEL}Targets.cmake
+    DESTINATION ${LIB_DESTINATION}/cmake/${ATTICA_LIB_SONAME_CAMEL}
+    NAMESPACE ${ATTICA_LIB_NAMESPACE}::
+)

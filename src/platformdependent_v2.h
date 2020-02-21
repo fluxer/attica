@@ -26,17 +26,16 @@
 
 #include <QtCore/QList>
 #include <QtCore/QtPlugin>
+#include <QtCore/QByteArray>
+#include <QtCore/QIODevice>
+#include <QtCore/QString>
+#include <QtCore/QUrl>
+#include <QtCore/QStringList>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
+#include <QtNetwork/QNetworkRequest>
 
 #include <platformdependent.h>
-
-class QByteArray;
-class QIODevice;
-class QNetworkAccessManager;
-class QNetworkReply;
-class QNetworkRequest;
-class QString;
-class QUrl;
-class QStringList;
 
 namespace Attica {
 

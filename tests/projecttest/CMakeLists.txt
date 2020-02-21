@@ -1,25 +1,20 @@
 project(projecttest)
-cmake_minimum_required(VERSION 2.8.11)
 
-set(QT_MIN_VERSION "4.7.0")
-if (Qt5Core_FOUND)
-    find_package(Qt5Transitional REQUIRED
-        Widgets
-    )
-endif()
-
-include_directories(${KDE4_INCLUDES}
-                    ${QT_INCLUDES})
-
-set(editproject_UI editproject.ui)
-QT4_WRAP_UI(editproject_UI_H ${editproject_UI})
+include_directories(
+    ${KDE4_INCLUDES}
+    ${QT_INCLUDES}
+)
 
 set(projecttest_SRCS
     projecttest.cpp
     main.cpp
+    editproject.ui
 )
-qt4_automoc(${projecttest_SRCS} ${editproject_SRCS})
 
-add_executable(projecttest ${projecttest_SRCS} ${editproject_UI_H})
+add_executable(projecttest ${projecttest_SRCS})
 
-target_link_libraries(projecttest ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${ATTICA_LIB_SONAME})
+target_link_libraries(projecttest
+    ${QT_QTCORE_LIBRARY}
+    ${QT_QTGUI_LIBRARY}
+    ${ATTICA_LIB_SONAME}
+)

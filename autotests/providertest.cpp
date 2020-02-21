@@ -23,6 +23,8 @@
 
 #include <QtTest/QtTest>
 #include <QEventLoop>
+#include <QTimer>
+#include <QDebug>
 
 #include <config.h>
 #include <providermanager.h>

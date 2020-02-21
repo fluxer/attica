@@ -26,12 +26,10 @@
 #include <QtCore/QList>
 #include <QtCore/QSharedDataPointer>
 #include <QtCore/QUrl>
+#include <QtCore/QDateTime>
 
 #include "atticaclient_export.h"
 #include "person.h"
-
-
-class QDateTime;
 
 namespace Attica {
 

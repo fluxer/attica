@@ -28,13 +28,12 @@
 #include <QtCore/QMap>
 #include <QtCore/QSharedDataPointer>
 #include <QtCore/QUrl>
+#include <QtCore/QDateTime>
 
 #include "atticaclient_export.h"
 #include "downloaddescription.h"
 #include "homepageentry.h"
 #include "icon.h"
-
-class QDateTime;
 
 namespace Attica {
     

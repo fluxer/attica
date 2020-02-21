@@ -27,8 +27,7 @@
 #include "atticaclient_export.h"
 #include "getjob.h"
 
-
-class QNetworkRequest;
+#include <QNetworkRequest>
 
 namespace Attica {
     class Provider;

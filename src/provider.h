@@ -29,8 +29,8 @@
 #include <QtCore/QSharedPointer>
 #include <QtCore/QString>
 #include <QtCore/QStringList>
-
 #include <QtCore/QUrl>
+#include <QtCore/QDate>
 
 #include "achievement.h"
 #include "atticaclient_export.h"
@@ -42,9 +42,6 @@
 #include "comment.h"
 #include "distribution.h"
 #include "license.h"
-
-class QDate;
-class QUrl;
 
 namespace Attica {
 

@@ -28,11 +28,10 @@
 #include <QtCore/QUrl>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
 
 #include "atticaclient_export.h"
 #include "metadata.h"
-
-class QNetworkReply;
 
 namespace Attica {
     class PlatformDependent;
