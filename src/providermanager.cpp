@@ -33,11 +33,7 @@
 #include <QtCore/QProcess>
 #include <QtNetwork/QAuthenticator>
 #include <QtNetwork/QNetworkReply>
-#if QT_VERSION >= 0x050000
-#include <QtCore/QXmlStreamReader>
-#else
 #include <QtXml/QXmlStreamReader>
-#endif // QT_VERSION
 
 #include "atticautils.h"
 
@@ -47,12 +43,6 @@
 
 
 using namespace Attica;
-
-#if QT_VERSION < 0x040700
-uint qHash(const QUrl& key) {
-    return qHash(key.toString());
-}
-#endif
 
 class ProviderManager::Private {
 public:
@@ -362,6 +352,3 @@ void ProviderManager::initNetworkAccesssManager()
     connect(d->m_internals->nam(), SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)), this, SLOT(authenticate(QNetworkReply*,QAuthenticator*)));
     connect(d->m_internals->nam(), SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)), this, SLOT(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)));
 }
-
-
-#include "providermanager.moc"
