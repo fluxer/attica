@@ -1,10 +1,5 @@
 project(projecttest)
 
-include_directories(
-    ${KDE4_INCLUDES}
-    ${QT_INCLUDES}
-)
-
 set(projecttest_SRCS
     projecttest.cpp
     main.cpp

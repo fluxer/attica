@@ -1,14 +1,3 @@
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH  TRUE)
-
-include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR})
-
-# mingw can't handle exported explicit template instantiations in a DLL
-if (MINGW)
-    set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--export-all-symbols ${CMAKE_SHARED_LINKER_FLAGS}")
-endif (MINGW)
-
 configure_file(
     version.h.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/version.h
@@ -120,7 +109,6 @@ install(
     EXPORT LibAtticaExport
     ARCHIVE DESTINATION ${LIB_DESTINATION}
     LIBRARY DESTINATION ${LIB_DESTINATION}
-    RUNTIME DESTINATION bin
 )
 
 set(ATTICA_HEADERS
@@ -173,7 +161,7 @@ install(
     FILES
     ${ATTICA_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/version.h
-    DESTINATION ${INCLUDE_DESTINATION}/attica/
+    DESTINATION ${INCLUDE_DESTINATION}/attica${ATTICA_SUFFIX}/
     COMPONENT Devel
 )
 
