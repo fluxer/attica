@@ -207,7 +207,7 @@ class ATTICA_EXPORT Content
     /**
       Get all icons for this content.
       */
-    QList<Icon> icons();
+    QList<Icon> icons() const;
     /**
      * Set list of icons.
      * @param icons list of icons for this content

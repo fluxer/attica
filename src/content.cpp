@@ -304,7 +304,7 @@ QString Attica::Content::smallPreviewPicture(const QString& number) const
     return attribute(QLatin1String( "smallpreviewpic" ) + number);
 }
 
-QList<Icon> Attica::Content::icons()
+QList<Icon> Attica::Content::icons() const
 {
     return d->m_icons;
 }
