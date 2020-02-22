@@ -52,21 +52,21 @@ public:
       The id of the description - as one Content can have multiple download descriptions associated.
       This will simply be 1, 2, ...
       */
-    int id();
-    Attica::DownloadDescription::Type type();
-    Q_DECL_DEPRECATED bool isDownloadtypLink();
-    bool hasPrice();
-    QString category();
-    QString name();
-    QString link();
-    QString distributionType();
-    QString priceReason();
-    QString priceAmount();
-    uint size();
-    QString gpgFingerprint();
-    QString gpgSignature();
-    QString packageName();
-    QString repository();
+    int id() const;
+    Attica::DownloadDescription::Type type() const;
+    Q_DECL_DEPRECATED bool isDownloadtypLink() const;
+    bool hasPrice() const;
+    QString category() const;
+    QString name() const;
+    QString link() const;
+    QString distributionType() const;
+    QString priceReason() const;
+    QString priceAmount() const;
+    uint size() const;
+    QString gpgFingerprint() const;
+    QString gpgSignature() const;
+    QString packageName() const;
+    QString repository() const;
 
     void setId(int id);
     void setType(Attica::DownloadDescription::Type type);

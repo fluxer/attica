@@ -72,12 +72,12 @@ DownloadDescription::~DownloadDescription()
 {
 }
 
-QString Attica::DownloadDescription::category()
+QString Attica::DownloadDescription::category() const
 {
     return d->category;
 }
 
-int DownloadDescription::id()
+int DownloadDescription::id() const
 {
     return d->id;
 }
@@ -92,7 +92,7 @@ void DownloadDescription::setCategory(const QString& category)
     d->category = category;
 }
 
-QString Attica::DownloadDescription::distributionType()
+QString Attica::DownloadDescription::distributionType() const
 {
     return d->distributionType;
 }
@@ -102,7 +102,7 @@ void DownloadDescription::setDistributionType(const QString& distributionType)
     d->distributionType = distributionType;
 }
 
-bool Attica::DownloadDescription::hasPrice()
+bool Attica::DownloadDescription::hasPrice() const
 {
     return d->hasPrice;
 }
@@ -112,7 +112,7 @@ void DownloadDescription::setHasPrice(bool hasPrice)
     d->hasPrice = hasPrice;
 }
 
-Attica::DownloadDescription::Type DownloadDescription::type()
+Attica::DownloadDescription::Type DownloadDescription::type() const
 {
     return d->type;
 }
@@ -122,7 +122,7 @@ void DownloadDescription::setType(Attica::DownloadDescription::Type type)
     d->type = type;
 }
 
-bool Attica::DownloadDescription::isDownloadtypLink()
+bool Attica::DownloadDescription::isDownloadtypLink() const
 {
     return d->type == Attica::DownloadDescription::LinkDownload;
 }
@@ -136,7 +136,7 @@ void DownloadDescription::setDownloadtypLink(bool isLink)
     }
 }
 
-QString Attica::DownloadDescription::link()
+QString Attica::DownloadDescription::link() const
 {
     return d->link;
 }
@@ -146,7 +146,7 @@ void DownloadDescription::setLink(const QString& link)
     d->link = link;
 }
 
-QString Attica::DownloadDescription::name()
+QString Attica::DownloadDescription::name() const
 {
     return d->name;
 }
@@ -156,7 +156,7 @@ void DownloadDescription::setName(const QString& name)
     d->name = name;
 }
 
-QString Attica::DownloadDescription::priceAmount()
+QString Attica::DownloadDescription::priceAmount() const
 {
     return d->priceAmount;
 }
@@ -166,7 +166,7 @@ void DownloadDescription::setPriceAmount(const QString& priceAmount)
     d->priceAmount = priceAmount;
 }
 
-QString Attica::DownloadDescription::priceReason()
+QString Attica::DownloadDescription::priceReason() const
 {
     return d->priceReason;
 }
@@ -176,7 +176,7 @@ void Attica::DownloadDescription::setPriceReason(const QString& priceReason)
     d->priceReason = priceReason;
 }
 
-uint Attica::DownloadDescription::size()
+uint Attica::DownloadDescription::size() const
 {
     return d->size;
 }
@@ -186,7 +186,7 @@ void Attica::DownloadDescription::setSize(uint size)
     d->size = size;
 }
 
-QString Attica::DownloadDescription::gpgFingerprint()
+QString Attica::DownloadDescription::gpgFingerprint() const
 {
     return d->gpgFingerprint;
 }
@@ -196,7 +196,7 @@ void Attica::DownloadDescription::setGpgFingerprint(const QString& fingerprint)
     d->gpgFingerprint = fingerprint;
 }
 
-QString Attica::DownloadDescription::gpgSignature()
+QString Attica::DownloadDescription::gpgSignature() const
 {
     return d->gpgSignature;
 }
@@ -206,7 +206,7 @@ void Attica::DownloadDescription::setGpgSignature(const QString& signature)
     d->gpgSignature = signature;
 }
 
-QString Attica::DownloadDescription::packageName()
+QString Attica::DownloadDescription::packageName() const
 {
     return d->packageName;
 }
@@ -216,7 +216,7 @@ void Attica::DownloadDescription::setPackageName(const QString& packageName)
     d->packageName = packageName;
 }
 
-QString Attica::DownloadDescription::repository()
+QString Attica::DownloadDescription::repository() const
 {
     return d->repository;
 }
